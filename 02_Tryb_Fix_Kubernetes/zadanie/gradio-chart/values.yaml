@@ -1,0 +1,32 @@
+# Default values for gradio-chart
+
+app:
+  name: gradio
+
+image:
+  repository: gradio-app
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: NodePort
+  port: 7860
+  targetPort: 7860
+  nodePort: 30080
+
+deployment:
+  replicas: 1
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilization: 70
+  targetMemoryUtilization: 80
