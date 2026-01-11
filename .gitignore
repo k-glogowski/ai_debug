@@ -29,3 +29,6 @@ Thumbs.db
 
 .aider*
 .env
+
+worker_data/
+.github/copilot-instructions.md
