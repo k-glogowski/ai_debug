@@ -7,7 +7,7 @@ spec:
   containers:
   - name: reader
     image: busybox
-    command: ["sh", "-c", "ls -la /data && find /data -type f"]
+    command: ["sh", "-c", "ls -la /data && find /data -type f && sleep 300"]
     volumeMounts:
     - name: data-volume
       mountPath: /data

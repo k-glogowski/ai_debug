@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap.name }}
+  namespace: {{ include "adresowo-scraper.namespace" . }}
+  labels:
+    {{- include "adresowo-scraper.labels" . | nindent 4 }}
+data:
+  # Default configuration
+  PAGES: {{ .Values.configmap.data.PAGES | quote }}
+  DELAY: {{ .Values.configmap.data.DELAY | quote }}
+  OUTPUT_DIR: {{ .Values.configmap.data.OUTPUT_DIR | quote }}
+  USER_AGENT: {{ .Values.configmap.data.USER_AGENT | quote }}
+  
+  # City-specific configurations
+{{- range .Values.cities }}
+  {{ .name }}_pages: {{ .pages | quote }}
+{{- end }}

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ include "adresowo-scraper.namespace" . }}
+  labels:
+    name: {{ include "adresowo-scraper.namespace" . }}
+    purpose: web-scraping
+    {{- include "adresowo-scraper.labels" . | nindent 4 }}

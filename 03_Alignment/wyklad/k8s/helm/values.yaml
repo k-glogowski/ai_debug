@@ -1,0 +1,74 @@
+# Default values for adresowo-scraper
+# This is a YAML-formatted file.
+
+# Namespace configuration
+namespace: scraper
+
+# Image configuration
+image:
+  repository: adresowo-scraper
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# Cities configuration
+cities:
+  - name: warszawa
+    pages: "1"
+  - name: wroclaw
+    pages: "1"
+  - name: lodz
+    pages: "1"
+
+# ConfigMap configuration
+configmap:
+  name: scraper-config
+  data:
+    # Default configuration
+    PAGES: "12"
+    DELAY: "1.0"
+    OUTPUT_DIR: "/data"
+    USER_AGENT: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# PVC configuration
+pvc:
+  name: scraper-data-pvc
+  accessModes:
+    - ReadWriteOnce
+  storage: 1Gi
+
+# Job configuration
+job:
+  enabled: true
+  backoffLimit: 3
+  activeDeadlineSeconds: 3600  # 1 hour timeout
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# CronJob configuration
+cronjob:
+  enabled: true
+  name: scraper-cronjob
+  schedule: "0 2 * * *"  # Run daily at 2 AM
+  timeZone: "Europe/Warsaw"
+  backoffLimit: 3
+  activeDeadlineSeconds: 7200  # 2 hours timeout
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# PVC Reader configuration
+pvcReader:
+  enabled: false
+  name: pvc-reader
+  image:
+    repository: busybox
+    tag: latest
