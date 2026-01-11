@@ -13,6 +13,8 @@ services:
       - redis
     networks:
       - celery_network
+    volumes:
+      - ../.cursor:/app/.cursor
 
   worker:
     build: ./worker
@@ -20,6 +22,9 @@ services:
       - redis
     networks:
       - celery_network
+    volumes:
+      - ./worker_data:/data
+      - ../.cursor:/app/.cursor
 networks:
   celery_network:
     driver: bridge

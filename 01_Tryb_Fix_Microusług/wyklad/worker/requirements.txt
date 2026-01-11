@@ -2,3 +2,5 @@ celery
 transformers
 redis
 torch
+scipy
+numpy

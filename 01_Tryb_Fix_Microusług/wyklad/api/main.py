@@ -17,8 +17,8 @@ def translate(req: TextIn):
    task = celery.send_task("tasks.translate_text", args=[req.text])
    return {"task_id": task.id, "status": "processing"}
 
-@app.get("/translate/{task_id}")
-def get_translation(task_id: str):
+@app.get("/task/{task_id}")
+def get_task_status(task_id: str):
    task = AsyncResult(task_id, app=celery)
    if task.status == "PENDING":
       return {"status": task.status, "result": None}
@@ -26,3 +26,8 @@ def get_translation(task_id: str):
       return {"status": task.status, "result": task.result}
    else:
       return {"status": task.status, "result": None}
+
+@app.post("/audio")
+def generate_audio(req: TextIn):
+   task = celery.send_task("tasks.generate_audio", args=[req.text])
+   return {"task_id": task.id, "status": "processing"}

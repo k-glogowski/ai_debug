@@ -23,6 +23,9 @@ Thumbs.db
 # Docker
 *.log
 
+# Generated data
+worker_data/
+
 # Temporary files
 *.tmp
 *.temp
