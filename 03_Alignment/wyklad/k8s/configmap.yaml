@@ -12,6 +12,7 @@ data:
   # City-specific configurations
   warszawa_pages: "1"
   wroclaw_pages: "1"
+  lodz_pages: "1"
   
   # Scraper settings
   USER_AGENT: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"

@@ -27,5 +27,6 @@ Thumbs.db
 *.tmp
 *.temp
 
+worker_data/
 .aider*
 .env

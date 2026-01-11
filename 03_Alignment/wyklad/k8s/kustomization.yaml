@@ -9,6 +9,7 @@ resources:
   - pvc.yaml
   - job-warszawa.yaml
   - job-wroclaw.yaml
+  - job-lodz.yaml
   - cronjob.yaml
 
 labels:
